@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.0 on win32)" generated="2025-09-16T14:07:21.707108" rpa="false" schemaversion="5">
+<suite id="s1" name="Login" source="C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\Tests\UI\01_Login_Signup\login.robot">
+<kw name="Setup Automation UI" owner="common_kw" type="SETUP">
+<kw name="Load Configuration" owner="common_kw">
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.251947" level="INFO">${URL} = https://www.automationexercise.com/</msg>
+<arg>${URL}</arg>
+<arg>${LOGIN_CONFIG}[url]</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.247560" elapsed="0.005095"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.260406" level="INFO">${USER_USERNAME} = marcelosautomationproject@gmail.com</msg>
+<arg>${USER_USERNAME}</arg>
+<arg>${LOGIN_CONFIG}[username]</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.254500" elapsed="0.006772"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.269230" level="INFO">${USER_PASSWORD} = Portfolio123!</msg>
+<arg>${USER_PASSWORD}</arg>
+<arg>${LOGIN_CONFIG}[password]</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.262903" elapsed="0.006859"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:22.242151" elapsed="0.028464"/>
+</kw>
+<kw name="Create Browser With Context" owner="ManageBrowser">
+<kw name="Build Web Browser Arguments" owner="ManageBrowser">
+<kw name="Convert To Boolean" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.286201" level="INFO">${headless_bool} = False</msg>
+<var>${headless_bool}</var>
+<arg>${BROWSER_IS_HEADLESS}</arg>
+<doc>Converts the given item to Boolean true or false.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.281621" elapsed="0.004794"/>
+</kw>
+<kw name="Convert To Integer" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.290326" level="INFO">${timeout_int} = 30</msg>
+<var>${timeout_int}</var>
+<arg>${BROWSER_TIMEOUT}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.287137" elapsed="0.003469"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.295314" level="INFO">${browser_args} = {'browser': 'chromium', 'headless': False, 'timeout': 30}</msg>
+<var>${browser_args}</var>
+<arg>browser=${WEB_BROWSER}</arg>
+<arg>headless=${headless_bool}</arg>
+<arg>timeout=${timeout_int}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.291113" elapsed="0.004534"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.301929" level="INFO">${WEB_BROWSER_ARGUMENTS} = {'browser': 'chromium', 'headless': False, 'timeout': 30}</msg>
+<arg>${WEB_BROWSER_ARGUMENTS}</arg>
+<arg>${browser_args}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.296708" elapsed="0.005796"/>
+</kw>
+<doc>Build the web browser arguments dictionary</doc>
+<status status="PASS" start="2025-09-16T14:07:22.277916" elapsed="0.024999"/>
+</kw>
+<kw name="Configure Download Path" owner="ManageBrowser">
+<try>
+<branch type="TRY">
+<kw name="Variable Should Exist" owner="BuiltIn">
+<arg>${WEB_BROWSER_DOWNLOAD_PATH}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.308077" elapsed="0.001823"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:22.306903" elapsed="0.003341"/>
+</branch>
+<branch type="EXCEPT">
+<kw name="Join Path" owner="OperatingSystem">
+<var>${path}</var>
+<arg>${EXECDIR}</arg>
+<arg>Downloads</arg>
+<doc>Joins the given path part(s) to the given base path.</doc>
+<status status="NOT RUN" start="2025-09-16T14:07:22.312174" elapsed="0.000501"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<arg>${WEB_BROWSER_DOWNLOAD_PATH}</arg>
+<arg>${path}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="NOT RUN" start="2025-09-16T14:07:22.313363" elapsed="0.000289"/>
+</kw>
+<status status="NOT RUN" start="2025-09-16T14:07:22.310744" elapsed="0.003075"/>
+</branch>
+<status status="PASS" start="2025-09-16T14:07:22.306537" elapsed="0.007505"/>
+</try>
+<doc>Configure Download Path</doc>
+<status status="PASS" start="2025-09-16T14:07:22.303825" elapsed="0.010468"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${BROWSER_STRATEGY}&quot; == &quot;incognito&quot;">
+<kw name="Create Incognito Browser And Context" owner="ManageBrowser">
+<kw name="Get Display Resolution" owner="ManageBrowser">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-09-16T14:07:22.320661" level="INFO">${display_resolution_values} = {'WIDTH': 1920, 'HEIGHT': 1080, 'ASPECT_RATIO': 969}</msg>
+<var>${display_resolution_values}</var>
+<arg>${DISPLAY_RESOLUTION_DICT}</arg>
+<arg>${DEFAULT_WINDOW_RESOLUTION}</arg>
+<arg>default={"WIDTH": 0, "HEIGHT": 0, "ASPECT_RATIO": null}</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.319487" elapsed="0.001236"/>
+</kw>
+<return>
+<value>${display_resolution_values}</value>
+<status status="PASS" start="2025-09-16T14:07:22.320853" elapsed="0.000348"/>
+</return>
+<msg time="2025-09-16T14:07:22.321558" level="INFO">${display_resolution_values} = {'WIDTH': 1920, 'HEIGHT': 1080, 'ASPECT_RATIO': 969}</msg>
+<var>${display_resolution_values}</var>
+<doc>Get Display Resolution from display resolution dictionary
+values: MAX, HD, FHD, QUAD_HD
+DEFAULT: MAX</doc>
+<status status="PASS" start="2025-09-16T14:07:22.318100" elapsed="0.003517"/>
+</kw>
+<if>
+<branch type="IF" condition="'${WEB_BROWSER}' == 'chromium'">
+<kw name="Set Chrome Arguments" owner="ManageBrowser">
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${WEB_BROWSER_ARGUMENTS}</arg>
+<arg>args=${CHROME_ARGS}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.323810" elapsed="0.005324"/>
+</kw>
+<doc>Set Chrome Arguments</doc>
+<status status="PASS" start="2025-09-16T14:07:22.323160" elapsed="0.006173"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:22.321944" elapsed="0.007471"/>
+</branch>
+<status status="PASS" start="2025-09-16T14:07:22.321870" elapsed="0.007631"/>
+</if>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-09-16T14:07:22.330265" level="INFO">${vp_width} = 1920</msg>
+<var>${vp_width}</var>
+<arg>${display_resolution_values}</arg>
+<arg>WIDTH</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.329695" elapsed="0.000623"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-09-16T14:07:22.331019" level="INFO">${vp_height} = 1080</msg>
+<var>${vp_height}</var>
+<arg>${display_resolution_values}</arg>
+<arg>HEIGHT</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.330520" elapsed="0.000544"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-16T14:07:22.331886" level="INFO">${viewport} = {'width': 1920, 'height': 1080}</msg>
+<var>${viewport}</var>
+<arg>width=${vp_width}</arg>
+<arg>height=${vp_height}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.331284" elapsed="0.000651"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${CONTEXT_ARGUMENTS}</arg>
+<arg>acceptDownloads=True</arg>
+<arg>viewport=${viewport}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.332119" elapsed="0.000490"/>
+</kw>
+<kw name="New Browser" owner="Browser">
+<msg time="2025-09-16T14:07:22.335071" level="INFO">{"browser": "chromium", "headless": false, "args": [], "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\Users\\marce\\OneDrive\\Desktop\\Automation Projects\\Automation\\results\\browser\\traces\\temp\\fcca248a-31a9-4bc0-a983-7ef7be9e5a40"}</msg>
+<msg time="2025-09-16T14:07:22.395647" level="INFO">Starting Browser process C:\Users\marce\AppData\Roaming\Python\Python313\site-packages\Browser\wrapper\index.js using at 127.0.0.1:51073</msg>
+<msg time="2025-09-16T14:07:25.126503" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"args":[],"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\Users\\marce\\OneDrive\\Desktop\\Automation Projects\\Automation\\results\\browser\\traces\\temp\\fcca248a-31a9-4bc0-a983-7ef7be9e5a40"}</msg>
+<arg>&amp;{WEB_BROWSER_ARGUMENTS}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2025-09-16T14:07:22.333417" elapsed="2.793638"/>
+</kw>
+<kw name="New Context" owner="Browser">
+<msg time="2025-09-16T14:07:25.135612" level="INFO">{
+  "acceptDownloads": true,
+  "bypassCSP": false,
+  "forcedColors": "none",
+  "ignoreHTTPSErrors": false,
+  "javaScriptEnabled": true,
+  "offline": false,
+  "reducedMotion": "no-preference",
+  "serviceWorkers": "allow",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  }
+}</msg>
+<msg time="2025-09-16T14:07:25.206583" level="INFO">Successfully created context. </msg>
+<msg time="2025-09-16T14:07:25.206924" level="INFO">{'acceptDownloads': True, 'bypassCSP': False, 'forcedColors': 'none', 'ignoreHTTPSErrors': False, 'javaScriptEnabled': True, 'offline': False, 'reducedMotion': 'no-preference', 'serviceWorkers': 'allow', 'viewport': {'width': 1920, 'height': 1080}}</msg>
+<arg>&amp;{CONTEXT_ARGUMENTS}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new BrowserContext with specified options.</doc>
+<status status="PASS" start="2025-09-16T14:07:25.127836" elapsed="0.079339"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2025-09-16T14:07:26.098001" level="INFO">Successfully initialized new page object and opened url: about:blank</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2025-09-16T14:07:25.207848" elapsed="0.890999"/>
+</kw>
+<doc>Create Incognito Browser With Context</doc>
+<status status="PASS" start="2025-09-16T14:07:22.316218" elapsed="3.783166"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:22.314511" elapsed="3.785110"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${BROWSER_STRATEGY}&quot; == &quot;persistent&quot;">
+<kw name="Create Persistent Browser And Context" owner="ManageBrowser">
+<doc>Create Persistent Browser With Context</doc>
+<status status="NOT RUN" start="2025-09-16T14:07:26.101710" elapsed="0.000637"/>
+</kw>
+<status status="NOT RUN" start="2025-09-16T14:07:26.099888" elapsed="0.002629"/>
+</branch>
+<status status="PASS" start="2025-09-16T14:07:22.314440" elapsed="3.788218"/>
+</if>
+<doc>Create Browser With Context based on browser strategy
+values: incognito, persistent</doc>
+<status status="PASS" start="2025-09-16T14:07:22.272351" elapsed="3.830460"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:22.236341" elapsed="3.866595"/>
+</kw>
+<test id="s1-t1" name="Scenario 1 &gt; Login with valid credentials" line="16">
+<kw name="Go to the website page" owner="login_kw">
+<kw name="Go To" owner="Browser">
+<msg time="2025-09-16T14:07:31.892467" level="INFO">Successfully opened URL https://www.automationexercise.com/</msg>
+<arg>${URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-09-16T14:07:26.165211" elapsed="5.731418"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:26.162699" elapsed="5.734658"/>
+</kw>
+<kw name="Go To The Login Page" owner="login_kw">
+<kw name="Click" owner="Browser">
+<msg time="2025-09-16T14:07:31.908532" level="INFO">Clicks the element 'a[href="/login"]'.</msg>
+<arg>${login_page}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-09-16T14:07:31.903124" elapsed="0.767106"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:31.901180" elapsed="0.771291"/>
+</kw>
+<kw name="Input The Email &quot;${USER_USERNAME}&quot; in the field" owner="login_kw" source_name="Input The Email &quot;${VAR_USER_USERNAME}&quot; in the field">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-09-16T14:07:32.680417" level="INFO">Fills the text 'marcelosautomationproject@gmail.com' in the given field.</msg>
+<arg>${login_email}</arg>
+<arg>${VAR_USER_USERNAME}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-09-16T14:07:32.677943" elapsed="0.273584"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:32.675289" elapsed="0.277512"/>
+</kw>
+<kw name="Input The Password &quot;${USER_PASSWORD}&quot; in the field" owner="login_kw" source_name="Input The Password &quot;${VAR_USER_PASSWORD}&quot; in the field">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-09-16T14:07:32.959039" level="INFO">Fills the text 'Portfolio123!' in the given field.</msg>
+<arg>${login_password}</arg>
+<arg>${VAR_USER_PASSWORD}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-09-16T14:07:32.957165" elapsed="0.093903"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:32.955489" elapsed="0.096072"/>
+</kw>
+<doc>Test scenario description</doc>
+<tag>login</tag>
+<tag>smoke</tag>
+<status status="PASS" start="2025-09-16T14:07:26.103133" elapsed="6.950303"/>
+</test>
+<test id="s1-t2" name="Scenario 2 &gt; Login with invalid credentials" line="25">
+<kw name="Given another precondition">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-09-16T14:07:33.134968" level="INFO">Another precondition executed</msg>
+<arg>Another precondition executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-09-16T14:07:33.132920" elapsed="0.002406"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:33.130051" elapsed="0.006147"/>
+</kw>
+<kw name="When another action">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-09-16T14:07:33.146629" level="INFO">Another action executed</msg>
+<arg>Another action executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-09-16T14:07:33.145380" elapsed="0.001415"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:33.141681" elapsed="0.005561"/>
+</kw>
+<kw name="Then another verification">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-09-16T14:07:33.194714" level="INFO">Another verification executed</msg>
+<arg>Another verification executed</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-09-16T14:07:33.153754" elapsed="0.041604"/>
+</kw>
+<status status="PASS" start="2025-09-16T14:07:33.149286" elapsed="0.102379"/>
+</kw>
+<doc>Another test scenario</doc>
+<tag>regression</tag>
+<tag>signup</tag>
+<status status="PASS" start="2025-09-16T14:07:33.105789" elapsed="0.253385"/>
+</test>
+<doc>Login Test Suite</doc>
+<status status="PASS" start="2025-09-16T14:07:21.718478" elapsed="11.682123"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">login</stat>
+<stat pass="1" fail="0" skip="0">regression</stat>
+<stat pass="1" fail="0" skip="0">signup</stat>
+<stat pass="1" fail="0" skip="0">smoke</stat>
+</tag>
+<suite>
+<stat name="Login" id="s1" pass="2" fail="0" skip="0">Login</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-09-16T14:07:22.125081" level="ERROR">Error in file 'C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\Resources\Common\common_kw.robot' on line 3: Importing library 'JsonLibrary' failed: ModuleNotFoundError: No module named 'JsonLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\marce\AppData\Roaming\Python\Python313\Scripts\robot.exe
+  C:\Program Files\Python313\python313.zip
+  C:\Program Files\Python313\DLLs
+  C:\Program Files\Python313\Lib
+  C:\Program Files\Python313
+  C:\Users\marce\AppData\Roaming\Python\Python313\site-packages
+  C:\Program Files\Python313\Lib\site-packages</msg>
+</errors>
+</robot>
