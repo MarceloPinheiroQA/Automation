@@ -2,6 +2,8 @@
     "LOGIN_CONFIG": {
         "url":"https://www.automationexercise.com/",
         "username":"marcelosautomationproject@gmail.com",
-        "password":"Portfolio123!"
+        "password":"Portfolio123!",
+        "name":"Marcelo Portfolio"
     }
+    
 }
