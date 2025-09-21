@@ -17,8 +17,8 @@ ${GENERIC_WRONG_PASSWORD}    notarealpassword
 *** Test Cases ***
 
 Scenario 0 > Create An Account In The Website
-    [Documentation]
-    [Tags]
+    [Documentation]    Test complete user registration flow with account creation and cleanup.
+    [Tags]             login    registration
     Go to the website page
     Go To The Login Page
     ${random_email_user} =     Generate Random Email
@@ -30,8 +30,8 @@ Scenario 0 > Create An Account In The Website
     Delete Account
 
 Scenario 1 > Register User with existing email
-    [Documentation]
-    [Tags]    fail
+    [Documentation]    Test registration with existing email to verify duplicate validation.
+    [Tags]             login    registration  
     Go to the website page
     Go To The Login Page
     Input Registration Name Credential    ${USER_NAME}
@@ -40,7 +40,7 @@ Scenario 1 > Register User with existing email
     Validate Existing Email Message
     
 Scenario 2 > Login with valid credentials
-    [Documentation]    Test scenario description
+    [Documentation]    Test successful login with valid credentials and logout functionality.
     [Tags]             smoke    login
     Go to the website page
     Go To The Login Page
@@ -49,8 +49,8 @@ Scenario 2 > Login with valid credentials
     Logout From The Application
 
 Scenario 3 > Login With Invalid Credentials
-    [Documentation]    Test scenario description
-    [Tags]             smoke    login
+    [Documentation]    Test login with invalid credentials to verify security validation.
+    [Tags]             smoke    login   
     Go to the website page
     Go To The Login Page
     Input The Email "${USER_USERNAME}" in the field
