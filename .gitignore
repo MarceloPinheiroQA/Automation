@@ -192,3 +192,16 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Robot Framework test results and logs
+Results/
+*.log
+*.html
+*.xml
+*.txt
+screenshot/
+traces/
+log.html
+output.xml
+report.html
+playwright-log.txt

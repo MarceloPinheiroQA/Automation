@@ -1,6 +1,8 @@
 *** Settings ***
 Documentation     
 Library           JsonLibrary
+Library           String
+Library           Collections
 Resource          ${CURDIR}/../Browser/ManageBrowser.robot
 
 *** Variables ***
@@ -18,6 +20,7 @@ Load Configuration
     Set Suite Variable    ${URL}                ${LOGIN_CONFIG}[url]
     Set Suite Variable    ${USER_USERNAME}      ${LOGIN_CONFIG}[username]
     Set Suite Variable    ${USER_PASSWORD}      ${LOGIN_CONFIG}[password]
+    Set Suite Variable    ${USER_NAME}          ${LOGIN_CONFIG}[name]
 
 Login in the application
     [Arguments]    ${username}    ${password}
@@ -25,3 +28,9 @@ Login in the application
     Fill Text    ${USERNAME_FIELD}    ${username}
     Fill Text    ${PASSWORD_FIELD}    ${password}
     Click        ${LOGIN_BUTTON}
+
+Generate Random Email
+    [Documentation]    Generates a random email with format: marceloportfolio[random_numbers]@test.com
+    ${random_numbers}=    Generate Random String    5    [NUMBERS]
+    ${random_email}=      Set Variable              marceloportfolio${random_numbers}@test.com
+    RETURN            ${random_email}
