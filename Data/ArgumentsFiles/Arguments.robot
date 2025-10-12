@@ -57,7 +57,8 @@
 # TEST FILE PATH
 # =============================================================================
 # Specify test files or directories to execute
-Tests/UI/01_Login_Signup/login.robot
+#Tests/UI/01_Login_Signup/login.robot
+Tests/API/01_SmokeApi.robot
 # =============================================================================
 # ADDITIONAL OPTIONS
 # =============================================================================

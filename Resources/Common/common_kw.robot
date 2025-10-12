@@ -15,12 +15,15 @@ ${PASSWORD_FIELD}        data-qa=login-password
 Setup Automation UI
     Load Configuration
     Create Browser With Context
-    
+
+Setup Automation API
+    Load Configuration
 Load Configuration
     Set Suite Variable    ${URL}                ${LOGIN_CONFIG}[url]
     Set Suite Variable    ${USER_USERNAME}      ${LOGIN_CONFIG}[username]
     Set Suite Variable    ${USER_PASSWORD}      ${LOGIN_CONFIG}[password]
     Set Suite Variable    ${USER_NAME}          ${LOGIN_CONFIG}[name]
+    Set Suite Variable    ${BASE_URL}           ${LOGIN_CONFIG}[base_url]
 
 Login in the application
     [Arguments]    ${username}    ${password}
