@@ -17,8 +17,6 @@ on:
         type: choice
         options:
           - uat
-          - dev
-          - prod
       browser:
         description: 'Browser to use for UI tests'
         required: false
