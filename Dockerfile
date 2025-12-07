@@ -50,14 +50,16 @@ RUN poetry run rfbrowser init
 # Copy project files
 COPY . .
 
-# Create Results directory
-RUN mkdir -p Results
+# Create Results directory with proper permissions
+RUN mkdir -p Results && chmod 777 Results
 
 # Set up entrypoint script
 RUN echo '#!/bin/bash\n\
 set -e\n\
 # Activate Poetry environment\n\
 export PATH="/app/.venv/bin:$PATH"\n\
+# Ensure Results directory exists\n\
+mkdir -p Results\n\
 # Run Robot Framework with passed arguments\n\
 exec robot "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
 
