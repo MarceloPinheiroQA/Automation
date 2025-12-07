@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
 # Install Poetry
 RUN pip install --no-cache-dir poetry
 
-# Configure Poetry to not create virtual environments (we're already in a container)
+# Configure Poetry to create virtual environment in project
 ENV POETRY_VENV_IN_PROJECT=1 \
     POETRY_NO_INTERACTION=1 \
     POETRY_CACHE_DIR=/tmp/poetry_cache
@@ -41,8 +41,11 @@ ENV POETRY_VENV_IN_PROJECT=1 \
 # Copy dependency files
 COPY pyproject.toml poetry.lock ./
 
-# Install Python dependencies
-RUN poetry install --no-root && rm -rf $POETRY_CACHE_DIR
+# Install Python dependencies and ensure venv is created
+RUN poetry env use python && \
+    poetry install --no-root --sync && \
+    rm -rf $POETRY_CACHE_DIR && \
+    chmod +x .venv/bin/* 2>/dev/null || true
 
 # Initialize Robot Framework Browser (Playwright browsers)
 RUN poetry run rfbrowser init
