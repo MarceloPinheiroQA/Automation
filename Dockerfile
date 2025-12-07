@@ -5,9 +5,12 @@ FROM python:3.13-slim
 WORKDIR /app
 
 # Install system dependencies required for Robot Framework Browser (Playwright)
+# Node.js is required because Playwright is built on Node.js
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
+    ca-certificates \
+    gnupg \
     xvfb \
     fonts-liberation \
     libasound2 \
@@ -28,6 +31,8 @@ RUN apt-get update && apt-get install -y \
     libxkbcommon0 \
     libxrandr2 \
     xdg-utils \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 # Install dependencies directly with pip (no Poetry needed in Docker)
