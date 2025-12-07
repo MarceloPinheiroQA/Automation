@@ -50,8 +50,7 @@ jobs:
         push: false
         load: true
         tags: robot-framework-tests:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+        no-cache: true
       
     - name: Set test tag based on selection
       id: set-test-tag
