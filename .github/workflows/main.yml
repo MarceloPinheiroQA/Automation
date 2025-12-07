@@ -109,7 +109,7 @@ jobs:
         DISPLAY: ':99'
         
     - name: Upload test results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: robot-framework-results-${{ inputs.test_type }}-${{ github.run_number }}
@@ -120,7 +120,7 @@ jobs:
         retention-days: 30
         
     - name: Upload screenshots
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always() && inputs.test_type == 'UI'
       with:
         name: screenshots-${{ inputs.test_type }}-${{ github.run_number }}
@@ -129,7 +129,7 @@ jobs:
         if-no-files-found: ignore
         
     - name: Upload traces
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always() && inputs.test_type == 'UI'
       with:
         name: traces-${{ inputs.test_type }}-${{ github.run_number }}
