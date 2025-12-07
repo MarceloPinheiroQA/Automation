@@ -6,7 +6,7 @@ Resource          ../../../Resources/Common/common_kw.robot
 Resource          ../../../Resources/Browser/ManageBrowser.robot
 Resource          ../../../Resources/UI/login_kw.robot
 Suite Setup       Setup Automation UI
-
+Test Tags        smokeui
 *** Variables ***
 ${BROWSER}        chrome
 ${URL}            https://example.com
