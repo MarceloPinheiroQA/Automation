@@ -1,63 +1,63 @@
-# Use Python 3.13 slim image as base
-FROM python:3.13-slim
+# Use the official robotframework-browser base image
+FROM ghcr.io/marketsquare/robotframework-browser/rfbrowser-stable:19.12
+
+# Switch to root temporarily to install dependencies
+USER root
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies required for Robot Framework Browser (Playwright)
-# Node.js is required because Playwright is built on Node.js
+# Install newer Python 3.13
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
     ca-certificates \
     gnupg \
-    xvfb \
-    fonts-liberation \
-    libasound2 \
-    libatk-bridge2.0-0 \
-    libatk1.0-0 \
-    libatspi2.0-0 \
-    libcups2 \
-    libdbus-1-3 \
-    libdrm2 \
-    libgbm1 \
-    libgtk-3-0 \
-    libnspr4 \
-    libnss3 \
-    libwayland-client0 \
-    libxcomposite1 \
-    libxdamage1 \
-    libxfixes3 \
-    libxkbcommon0 \
-    libxrandr2 \
-    xdg-utils \
-    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    software-properties-common \
+    build-essential \
+    && add-apt-repository ppa:deadsnakes/ppa -y \
+    && apt-get update \
+    && apt-get install -y python3.13 python3.13-dev python3.13-distutils python3.13-venv \
+    && curl -sS https://bootstrap.pypa.io/get-pip.py | python3.13 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade Node.js to version 20.x (if not already latest)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Install dependencies directly with pip (no Poetry needed in Docker)
-RUN pip install --no-cache-dir \
+# Install additional test dependencies with Python 3.13
+# Note: robotframework-browser is already installed in the base image
+# We'll install robotframework and requests for Python 3.13
+RUN python3.13 -m pip install --no-cache-dir --upgrade pip && \
+    python3.13 -m pip install --no-cache-dir \
     robotframework \
-    robotframework-browser>=19.6.0,<20.0.0 \
+    robotframework-browser \
     requests>=2.32.5,<3.0.0
 
-# Initialize Robot Framework Browser (Playwright browsers)
-# Using python -m is more reliable than rfbrowser command
-RUN python -m Browser.entry init
+# Initialize Playwright browsers for Python 3.13 (browsers are shared system-wide)
+RUN python3.13 -m Browser.entry init || true
 
-# Copy project files
-COPY . .
+# Create Results directory with proper permissions for pwuser
+RUN mkdir -p /app/Results && \
+    chown -R pwuser:pwuser /app && \
+    chmod 755 /app
 
-# Create Results directory with proper permissions
-RUN mkdir -p Results && chmod 777 Results
+# Copy project files (as root, then change ownership)
+COPY --chown=pwuser:pwuser . /app
 
-# Set up entrypoint script
+# Set up entrypoint script using Python 3.13
 RUN echo '#!/bin/bash\n\
 set -e\n\
 # Ensure Results directory exists\n\
-mkdir -p Results\n\
-# Run Robot Framework with passed arguments\n\
-exec robot "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
+mkdir -p /app/Results\n\
+# Run Robot Framework with passed arguments using Python 3.13\n\
+exec python3.13 -m robot "$@"' > /entrypoint.sh && \
+    chmod +x /entrypoint.sh && \
+    chown pwuser:pwuser /entrypoint.sh
+
+# Switch back to pwuser (the image's default user)
+USER pwuser
 
 ENTRYPOINT ["/entrypoint.sh"]
 
