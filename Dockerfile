@@ -30,16 +30,15 @@ RUN apt-get update && apt-get install -y \
     xdg-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy dependency files
-COPY pyproject.toml poetry.lock ./
-
 # Install dependencies directly with pip (no Poetry needed in Docker)
 RUN pip install --no-cache-dir \
+    robotframework \
     robotframework-browser>=19.6.0,<20.0.0 \
     requests>=2.32.5,<3.0.0
 
 # Initialize Robot Framework Browser (Playwright browsers)
-RUN rfbrowser init || python -m Browser.entry init
+# Using python -m is more reliable than rfbrowser command
+RUN python -m Browser.entry init
 
 # Copy project files
 COPY . .
