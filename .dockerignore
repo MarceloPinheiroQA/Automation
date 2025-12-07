@@ -46,6 +46,3 @@ Thumbs.db
 *.md
 !README.md
 
-# Poetry
-poetry.lock
-
