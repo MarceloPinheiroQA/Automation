@@ -47,8 +47,9 @@ RUN poetry config virtualenvs.in-project true && \
     poetry install --no-root --sync && \
     rm -rf $POETRY_CACHE_DIR
 
-# Initialize Robot Framework Browser (Playwright browsers)
-RUN .venv/bin/rfbrowser init
+# Verify robotframework-browser is installed and initialize Playwright browsers
+RUN poetry run python -c "import Browser; print('Browser module found')" && \
+    (poetry run rfbrowser init || poetry run python -m Browser.entry init)
 
 # Copy project files
 COPY . .
