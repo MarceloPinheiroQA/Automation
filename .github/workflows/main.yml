@@ -121,11 +121,18 @@ jobs:
         
     - name: Upload screenshots
       uses: actions/upload-artifact@v3
-      if: always()
-      if: inputs.test_type == 'UI'
+      if: always() && inputs.test_type == 'UI'
       with:
         name: screenshots-${{ inputs.test_type }}-${{ github.run_number }}
         path: Results/browser/screenshot/
         retention-days: 30
         if-no-files-found: ignore
         
+    - name: Upload traces
+      uses: actions/upload-artifact@v3
+      if: always() && inputs.test_type == 'UI'
+      with:
+        name: traces-${{ inputs.test_type }}-${{ github.run_number }}
+        path: Results/browser/traces/
+        retention-days: 30
+        if-no-files-found: ignore
