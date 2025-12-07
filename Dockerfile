@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
-RUN pip install --no-cache-dir poetry==latest
+RUN pip install --no-cache-dir poetry
 
 # Configure Poetry to not create virtual environments (we're already in a container)
 ENV POETRY_VENV_IN_PROJECT=1 \
