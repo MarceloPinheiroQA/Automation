@@ -30,20 +30,13 @@ RUN apt-get update && apt-get install -y \
     xdg-utils \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
-RUN pip install --no-cache-dir poetry
-
-# Configure Poetry to NOT create virtual environments (Docker is already isolated)
-ENV POETRY_NO_INTERACTION=1 \
-    POETRY_VIRTUALENVS_CREATE=false \
-    POETRY_CACHE_DIR=/tmp/poetry_cache
-
 # Copy dependency files
 COPY pyproject.toml poetry.lock ./
 
-# Install dependencies directly to system Python
-RUN poetry install --no-root --sync && \
-    rm -rf $POETRY_CACHE_DIR
+# Install dependencies directly with pip (no Poetry needed in Docker)
+RUN pip install --no-cache-dir \
+    robotframework-browser>=19.6.0,<20.0.0 \
+    requests>=2.32.5,<3.0.0
 
 # Initialize Robot Framework Browser (Playwright browsers)
 RUN rfbrowser init || python -m Browser.entry init
