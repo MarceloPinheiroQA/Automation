@@ -33,23 +33,20 @@ RUN apt-get update && apt-get install -y \
 # Install Poetry
 RUN pip install --no-cache-dir poetry
 
-# Configure Poetry settings
+# Configure Poetry to NOT create virtual environments (Docker is already isolated)
 ENV POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false \
     POETRY_CACHE_DIR=/tmp/poetry_cache
 
 # Copy dependency files
 COPY pyproject.toml poetry.lock ./
 
-# Configure Poetry to use in-project virtual environment and install dependencies
-RUN poetry config virtualenvs.in-project true && \
-    poetry config virtualenvs.create true && \
-    poetry env use python && \
-    poetry install --no-root --sync && \
+# Install dependencies directly to system Python
+RUN poetry install --no-root --sync && \
     rm -rf $POETRY_CACHE_DIR
 
-# Verify robotframework-browser is installed and initialize Playwright browsers
-RUN poetry run python -c "import Browser; print('Browser module found')" && \
-    (poetry run rfbrowser init || poetry run python -m Browser.entry init)
+# Initialize Robot Framework Browser (Playwright browsers)
+RUN rfbrowser init || python -m Browser.entry init
 
 # Copy project files
 COPY . .
@@ -60,8 +57,6 @@ RUN mkdir -p Results && chmod 777 Results
 # Set up entrypoint script
 RUN echo '#!/bin/bash\n\
 set -e\n\
-# Activate Poetry environment\n\
-export PATH="/app/.venv/bin:$PATH"\n\
 # Ensure Results directory exists\n\
 mkdir -p Results\n\
 # Run Robot Framework with passed arguments\n\
