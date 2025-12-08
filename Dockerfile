@@ -11,6 +11,10 @@ WORKDIR /app
 ENV POETRY_HOME="/opt/poetry"
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
+# Upgrade pip and install setuptools/wheel (required by Poetry)
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+
+# Install Poetry
 RUN pip install --no-cache-dir poetry
 
 # Configure Poetry to not create virtual environments (install to system Python)
