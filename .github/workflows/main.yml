@@ -73,6 +73,7 @@ jobs:
           --variable BROWSER:${{ inputs.browser }} \
           --variable HEADLESS:${{ inputs.headless }} \
           --variable ENVIRONMENT:${{ inputs.environment }} \
+          -V Data/ConfigFiles/uat.json \
           --include ${{ steps.set-test-tag.outputs.test_tag }} \
           --log log.html \
           --report report.html \
