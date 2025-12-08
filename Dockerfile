@@ -13,11 +13,18 @@ ENV PATH="$POETRY_HOME/bin:$PATH"
 
 RUN pip install --no-cache-dir poetry
 
+# Configure Poetry to not create virtual environments (install to system Python)
+RUN poetry config virtualenvs.create false
+
+# Configure Poetry environment variables
+ENV POETRY_NO_INTERACTION=1 \
+    POETRY_CACHE_DIR=/tmp/poetry_cache
+
 # Copy dependency files first (better Docker layer caching)
 COPY pyproject.toml poetry.lock* /app/
 
 # Install dependencies using Poetry (uses base image's Python)
-RUN poetry install --no-root
+RUN poetry install --no-root --no-interaction && rm -rf $POETRY_CACHE_DIR
 
 # Copy the rest of the project
 COPY . /app
