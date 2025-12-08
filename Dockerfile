@@ -7,22 +7,14 @@ USER root
 # Set working directory
 WORKDIR /app
 
-# Install Poetry
-ENV POETRY_HOME="/opt/poetry"
-ENV PATH="$POETRY_HOME/bin:$PATH"
-
-# Upgrade pip and ensure setuptools/wheel are installed
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --upgrade setuptools wheel
+# Upgrade pip and install build dependencies
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Install Poetry
 RUN pip install --no-cache-dir poetry
 
 # Configure Poetry to not create virtual environments (install to system Python)
 RUN poetry config virtualenvs.create false
-
-# Verify setuptools is installed and accessible
-RUN python -c "import setuptools; print(setuptools.__version__)"
 
 # Configure Poetry environment variables
 ENV POETRY_NO_INTERACTION=1 \
@@ -31,12 +23,9 @@ ENV POETRY_NO_INTERACTION=1 \
 # Copy dependency files first (better Docker layer caching)
 COPY pyproject.toml poetry.lock* /app/
 
-# Export Poetry dependencies to requirements.txt and install with pip
-# This avoids Poetry's setuptools installation issues
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes && \
-    pip install --no-cache-dir -r requirements.txt && \
-    rm -f requirements.txt && \
-    rm -rf $POETRY_CACHE_DIR
+# Install dependencies using Poetry
+# The base image already has robotframework-browser, so we're mainly installing robotframework and requests
+RUN poetry install --no-root --no-interaction && rm -rf $POETRY_CACHE_DIR
 
 # Copy the rest of the project
 COPY . /app
@@ -61,4 +50,3 @@ exec poetry run robot "$@"' > /entrypoint.sh && \
 USER pwuser
 
 ENTRYPOINT ["/entrypoint.sh"]
-
