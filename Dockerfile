@@ -1,28 +1,45 @@
-[project]
-name = "automation-portfolio"
-version = "0.1.0"
-description = ""
-authors = [
-    {name = "Marcelo Pinheiro",email = "marcelohenrique5620@gmail.com"}
-]
-readme = "README.md"
-requires-python = ">=3.12, <3.13"
-dependencies = [
-    "robotframework",
-    "robotframework-browser (>=19.6.0,<20.0.0)",
-    "requests (>=2.32.5,<3.0.0)"
-]
+# Use the official robotframework-browser base image
+FROM ghcr.io/marketsquare/robotframework-browser/rfbrowser-stable:19.12
 
-[tool.poetry]
-packages = [{include = "automation_portfolio", from = "src"}]
+# Switch to root temporarily to install dependencies
+USER root
 
-[tool.poetry.dependencies]
-python = ">=3.12,<3.13"
-robotframework = "*"
-robotframework-browser = ">=19.6.0,<20.0.0"
-requests = ">=2.32.5,<3.0.0"
+# Set working directory
+WORKDIR /app
 
+# Install Poetry
+ENV POETRY_HOME="/opt/poetry"
+ENV PATH="$POETRY_HOME/bin:$PATH"
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+RUN pip install --no-cache-dir poetry
+
+# Copy dependency files first (better Docker layer caching)
+COPY pyproject.toml poetry.lock* /app/
+
+# Install dependencies using Poetry (uses base image's Python)
+RUN poetry install --no-root
+
+# Copy the rest of the project
+COPY . /app
+
+# Initialize Playwright browsers using Poetry
+RUN poetry run rfbrowser init
+
+# Create Results directory with proper permissions for pwuser
+RUN mkdir -p /app/Results && \
+    chown -R pwuser:pwuser /app && \
+    chmod 755 /app
+
+# Set up entrypoint script using Poetry
+RUN echo '#!/bin/bash\n\
+set -e\n\
+mkdir -p /app/Results\n\
+exec poetry run robot "$@"' > /entrypoint.sh && \
+    chmod +x /entrypoint.sh && \
+    chown pwuser:pwuser /entrypoint.sh
+
+# Switch back to pwuser (the image's default user)
+USER pwuser
+
+ENTRYPOINT ["/entrypoint.sh"]
+
