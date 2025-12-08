@@ -7,10 +7,10 @@ USER root
 # Set working directory
 WORKDIR /app
 
-# Install Poetry
-ENV POETRY_HOME="/opt/poetry"
-ENV PATH="$POETRY_HOME/bin:$PATH"
+# Upgrade pip and install build dependencies
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
+# Install Poetry
 RUN pip install --no-cache-dir poetry
 
 # Configure Poetry to not create virtual environments (install to system Python)
@@ -23,7 +23,8 @@ ENV POETRY_NO_INTERACTION=1 \
 # Copy dependency files first (better Docker layer caching)
 COPY pyproject.toml poetry.lock* /app/
 
-# Install dependencies using Poetry (uses base image's Python)
+# Install dependencies using Poetry
+# The base image already has robotframework-browser, so we're mainly installing robotframework and requests
 RUN poetry install --no-root --no-interaction && rm -rf $POETRY_CACHE_DIR
 
 # Copy the rest of the project
@@ -49,4 +50,3 @@ exec poetry run robot "$@"' > /entrypoint.sh && \
 USER pwuser
 
 ENTRYPOINT ["/entrypoint.sh"]
-
