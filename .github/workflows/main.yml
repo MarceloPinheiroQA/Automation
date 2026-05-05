@@ -53,9 +53,11 @@ jobs:
           -v "${{ github.workspace }}/Results:/app/Results" \
           robot-framework-tests:latest \
           --outputdir Results \
-          --variable BROWSER:chrome \
-          --variable BROWSER_IS_HEADLESS:true \
-          $TAG_PARAM \
+          --variable BROWSER:${{ inputs.browser }} \
+          --variable BROWSER_IS_HEADLESS:${{ inputs.headless }} \
+          --variable ENVIRONMENT:${{ inputs.environment }} \
+          -V Data/ConfigFiles/uat.json \
+          --include ${{ steps.set-test-tag.outputs.test_tag }} \
           --log log.html \
           --report report.html \
           Tests/
