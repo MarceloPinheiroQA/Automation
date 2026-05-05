@@ -44,24 +44,22 @@ jobs:
       
     - name: Run Robot Framework Tests in Docker
       run: |
-        # 1. Garantimos que a variável sempre tenha um valor (fallback para 'all')
-        SELECTED_GROUP="${{ github.event.inputs.test_group || 'all' }}"
-        
-        # 2. Construímos a tag apenas se não for 'all'
         TAG_PARAM=""
-        if [ "$SELECTED_GROUP" != "all" ]; then
-          TAG_PARAM="--include $SELECTED_GROUP"
+        if [ "${{ github.event.inputs.test_group }}" != "all" ] && [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          TAG_PARAM="--include ${{ github.event.inputs.test_group }}"
         fi
 
-        # 3. Execução do Docker sem as flags redundantes de --log e --report
-        # (O Robot já gera log.html e report.html automaticamente dentro da pasta Results)
         docker run --rm \
           -v "${{ github.workspace }}/Results:/app/Results" \
           robot-framework-tests:latest \
           --outputdir Results \
-          --variable BROWSER:chrome \
-          --variable BROWSER_IS_HEADLESS:true \
-          $TAG_PARAM \
+          --variable BROWSER:${{ inputs.browser }} \
+          --variable BROWSER_IS_HEADLESS:${{ inputs.headless }} \
+          --variable ENVIRONMENT:${{ inputs.environment }} \
+          -V Data/ConfigFiles/uat.json \
+          --include ${{ steps.set-test-tag.outputs.test_tag }} \
+          --log log.html \
+          --report report.html \
           Tests/
         
     - name: Upload test results
