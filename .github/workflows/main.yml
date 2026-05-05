@@ -1,36 +1,24 @@
 name: Robot Framework Tests
 
 on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
     inputs:
-      test_type:
-        description: 'Select test type to run'
+      test_group:
+        description: 'Select the test suite to execute'
         required: true
+        default: 'all'
         type: choice
         options:
-          - API
-          - UI
-      environment:
-        description: 'Environment configuration'
-        required: false
-        default: 'uat'
-        type: choice
-        options:
-          - uat
-      browser:
-        description: 'Browser to use for UI tests'
-        required: false
-        default: 'chrome'
-        type: choice
-        options:
-          - chrome
-          - firefox
-          - edge
-      headless:
-        description: 'Run browser in headless mode'
-        required: false
-        default: true
-        type: boolean
+          - all
+          - smokeapi
+          - smokeui
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   robot-framework-tests:
@@ -50,60 +38,32 @@ jobs:
         push: false
         load: true
         tags: robot-framework-tests:latest
-        no-cache: true
-      
-    - name: Set test tag based on selection
-      id: set-test-tag
-      run: |
-        if [ "${{ inputs.test_type }}" == "API" ]; then
-          echo "test_tag=smokeapi" >> $GITHUB_OUTPUT
-        else
-          echo "test_tag=smokeui" >> $GITHUB_OUTPUT
-        fi
       
     - name: Create Results Directory
       run: mkdir -p Results
       
     - name: Run Robot Framework Tests in Docker
       run: |
+        TAG_PARAM=""
+        if [ "${{ github.event.inputs.test_group }}" != "all" ] && [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          TAG_PARAM="--include ${{ github.event.inputs.test_group }}"
+        fi
+
         docker run --rm \
           -v "${{ github.workspace }}/Results:/app/Results" \
           robot-framework-tests:latest \
           --outputdir Results \
-          --variable BROWSER:${{ inputs.browser }} \
-          --variable HEADLESS:${{ inputs.headless }} \
-          --variable ENVIRONMENT:${{ inputs.environment }} \
-          --include ${{ steps.set-test-tag.outputs.test_tag }} \
+          --variable BROWSER:chrome \
+          --variable BROWSER_IS_HEADLESS:true \
+          $TAG_PARAM \
           --log log.html \
           --report report.html \
-          --output output.xml \
           Tests/
         
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: robot-framework-results-${{ inputs.test_type }}-${{ github.run_number }}
-        path: |
-          Results/log.html
-          Results/report.html
-          Results/output.xml
+        name: robot-results-run-${{ github.run_number }}
+        path: Results/
         retention-days: 30
-        
-    - name: Upload screenshots
-      uses: actions/upload-artifact@v4
-      if: always() && inputs.test_type == 'UI'
-      with:
-        name: screenshots-${{ inputs.test_type }}-${{ github.run_number }}
-        path: Results/browser/screenshot/
-        retention-days: 30
-        if-no-files-found: ignore
-        
-    - name: Upload traces
-      uses: actions/upload-artifact@v4
-      if: always() && inputs.test_type == 'UI'
-      with:
-        name: traces-${{ inputs.test_type }}-${{ github.run_number }}
-        path: Results/browser/traces/
-        retention-days: 30
-        if-no-files-found: ignore
