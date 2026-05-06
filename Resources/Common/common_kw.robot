@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     
-Library           JsonLibrary
+Library           JSONLibrary
 Library           String
 Library           Collections
 Resource          ${CURDIR}/../Browser/ManageBrowser.robot
