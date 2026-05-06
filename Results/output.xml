@@ -1,72 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.1 (Python 3.13.0 on win32)" generated="2025-09-21T13:34:01.752040" rpa="false" schemaversion="5">
-<suite id="s1" name="Login" source="C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\Tests\UI\01_Login_Signup\login.robot">
+<robot generator="Robot 7.3.2 (Python 3.13.0 on win32)" generated="2026-05-05T21:05:55.846193" rpa="false" schemaversion="5">
+<suite id="s1" name="Login" source="C:\Users\marce\OneDrive\Desktop\Automation Projects\robot-automation-project\Tests\UI\01_Login_Signup\login.robot">
 <kw name="Setup Automation UI" owner="common_kw" type="SETUP">
 <kw name="Load Configuration" owner="common_kw">
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.031600" level="INFO">${URL} = https://www.automationexercise.com/</msg>
+<msg time="2026-05-05T21:05:56.727756" level="INFO">${URL} = https://www.automationexercise.com/</msg>
 <arg>${URL}</arg>
 <arg>${LOGIN_CONFIG}[url]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.031282" elapsed="0.000387"/>
+<status status="PASS" start="2026-05-05T21:05:56.726990" elapsed="0.000903"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.033002" level="INFO">${USER_USERNAME} = marcelosautomationproject@gmail.com</msg>
+<msg time="2026-05-05T21:05:56.730870" level="INFO">${USER_USERNAME} = marcelosautomationproject@gmail.com</msg>
 <arg>${USER_USERNAME}</arg>
 <arg>${LOGIN_CONFIG}[username]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.031848" elapsed="0.001209"/>
+<status status="PASS" start="2026-05-05T21:05:56.728260" elapsed="0.002773"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.034338" level="INFO">${USER_PASSWORD} = Portfolio123!</msg>
+<msg time="2026-05-05T21:05:56.734200" level="INFO">${USER_PASSWORD} = Portfolio123!</msg>
 <arg>${USER_PASSWORD}</arg>
 <arg>${LOGIN_CONFIG}[password]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.033200" elapsed="0.001197"/>
+<status status="PASS" start="2026-05-05T21:05:56.731476" elapsed="0.002889"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.035957" level="INFO">${USER_NAME} = Marcelo Portfolio</msg>
+<msg time="2026-05-05T21:05:56.737467" level="INFO">${USER_NAME} = Marcelo Portfolio</msg>
 <arg>${USER_NAME}</arg>
 <arg>${LOGIN_CONFIG}[name]</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.034573" elapsed="0.001446"/>
+<status status="PASS" start="2026-05-05T21:05:56.734721" elapsed="0.002859"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:02.030492" elapsed="0.005637"/>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2026-05-05T21:05:56.741851" level="INFO">${BASE_URL} = https://automationexercise.com/api/</msg>
+<arg>${BASE_URL}</arg>
+<arg>${LOGIN_CONFIG}[base_url]</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2026-05-05T21:05:56.737878" elapsed="0.004266"/>
+</kw>
+<status status="PASS" start="2026-05-05T21:05:56.724352" elapsed="0.018169"/>
 </kw>
 <kw name="Create Browser With Context" owner="ManageBrowser">
 <kw name="Build Web Browser Arguments" owner="ManageBrowser">
 <kw name="Convert To Boolean" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.037288" level="INFO">${headless_bool} = False</msg>
+<msg time="2026-05-05T21:05:56.745393" level="INFO">${headless_bool} = False</msg>
 <var>${headless_bool}</var>
 <arg>${BROWSER_IS_HEADLESS}</arg>
 <doc>Converts the given item to Boolean true or false.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.037008" elapsed="0.000310"/>
+<status status="PASS" start="2026-05-05T21:05:56.744755" elapsed="0.000716"/>
 </kw>
 <kw name="Convert To Integer" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.037674" level="INFO">${timeout_int} = 30</msg>
+<msg time="2026-05-05T21:05:56.746315" level="INFO">${timeout_int} = 30</msg>
 <var>${timeout_int}</var>
 <arg>${BROWSER_TIMEOUT}</arg>
 <doc>Converts the given item to an integer number.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.037444" elapsed="0.000256"/>
+<status status="PASS" start="2026-05-05T21:05:56.745742" elapsed="0.000630"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.038188" level="INFO">${browser_args} = {'browser': 'chromium', 'headless': False, 'timeout': 30}</msg>
+<msg time="2026-05-05T21:05:56.747564" level="INFO">${browser_args} = {'browser': 'chromium', 'headless': False, 'timeout': 30}</msg>
 <var>${browser_args}</var>
 <arg>browser=${WEB_BROWSER}</arg>
 <arg>headless=${headless_bool}</arg>
 <arg>timeout=${timeout_int}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.037815" elapsed="0.000403"/>
+<status status="PASS" start="2026-05-05T21:05:56.746745" elapsed="0.000898"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.039460" level="INFO">${WEB_BROWSER_ARGUMENTS} = {'browser': 'chromium', 'headless': False, 'timeout': 30}</msg>
+<msg time="2026-05-05T21:05:56.751023" level="INFO">${WEB_BROWSER_ARGUMENTS} = {'browser': 'chromium', 'headless': False, 'timeout': 30}</msg>
 <arg>${WEB_BROWSER_ARGUMENTS}</arg>
 <arg>${browser_args}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.038367" elapsed="0.001141"/>
+<status status="PASS" start="2026-05-05T21:05:56.747930" elapsed="0.003225"/>
 </kw>
 <doc>Build the web browser arguments dictionary</doc>
-<status status="PASS" start="2025-09-21T13:34:02.036771" elapsed="0.002818"/>
+<status status="PASS" start="2026-05-05T21:05:56.744185" elapsed="0.007140"/>
 </kw>
 <kw name="Configure Download Path" owner="ManageBrowser">
 <try>
@@ -74,9 +81,9 @@
 <kw name="Variable Should Exist" owner="BuiltIn">
 <arg>${WEB_BROWSER_DOWNLOAD_PATH}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.040270" elapsed="0.000280"/>
+<status status="PASS" start="2026-05-05T21:05:56.752624" elapsed="0.000414"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:02.040081" elapsed="0.000517"/>
+<status status="PASS" start="2026-05-05T21:05:56.752275" elapsed="0.000861"/>
 </branch>
 <branch type="EXCEPT">
 <kw name="Join Path" owner="OperatingSystem">
@@ -84,44 +91,44 @@
 <arg>${EXECDIR}</arg>
 <arg>Downloads</arg>
 <doc>Joins the given path part(s) to the given base path.</doc>
-<status status="NOT RUN" start="2025-09-21T13:34:02.040904" elapsed="0.000085"/>
+<status status="NOT RUN" start="2026-05-05T21:05:56.753549" elapsed="0.000119"/>
 </kw>
 <kw name="Set Suite Variable" owner="BuiltIn">
 <arg>${WEB_BROWSER_DOWNLOAD_PATH}</arg>
 <arg>${path}</arg>
 <doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<status status="NOT RUN" start="2025-09-21T13:34:02.041250" elapsed="0.000196"/>
+<status status="NOT RUN" start="2026-05-05T21:05:56.753921" elapsed="0.000135"/>
 </kw>
-<status status="NOT RUN" start="2025-09-21T13:34:02.040665" elapsed="0.000939"/>
+<status status="NOT RUN" start="2026-05-05T21:05:56.753256" elapsed="0.000887"/>
 </branch>
-<status status="PASS" start="2025-09-21T13:34:02.040022" elapsed="0.001776"/>
+<status status="PASS" start="2026-05-05T21:05:56.752185" elapsed="0.002056"/>
 </try>
 <doc>Configure Download Path</doc>
-<status status="PASS" start="2025-09-21T13:34:02.039812" elapsed="0.002186"/>
+<status status="PASS" start="2026-05-05T21:05:56.751740" elapsed="0.002598"/>
 </kw>
 <if>
 <branch type="IF" condition="&quot;${BROWSER_STRATEGY}&quot; == &quot;incognito&quot;">
 <kw name="Create Incognito Browser And Context" owner="ManageBrowser">
 <kw name="Get Display Resolution" owner="ManageBrowser">
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-09-21T13:34:02.048992" level="INFO">${display_resolution_values} = {'WIDTH': 1920, 'HEIGHT': 1080, 'ASPECT_RATIO': 969}</msg>
+<msg time="2026-05-05T21:05:56.757069" level="INFO">${display_resolution_values} = {'WIDTH': 1920, 'HEIGHT': 1080, 'ASPECT_RATIO': 969}</msg>
 <var>${display_resolution_values}</var>
 <arg>${DISPLAY_RESOLUTION_DICT}</arg>
 <arg>${DEFAULT_WINDOW_RESOLUTION}</arg>
 <arg>default={"WIDTH": 0, "HEIGHT": 0, "ASPECT_RATIO": null}</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.048379" elapsed="0.000652"/>
+<status status="PASS" start="2026-05-05T21:05:56.756198" elapsed="0.000939"/>
 </kw>
 <return>
 <value>${display_resolution_values}</value>
-<status status="PASS" start="2025-09-21T13:34:02.049128" elapsed="0.000133"/>
+<status status="PASS" start="2026-05-05T21:05:56.757282" elapsed="0.000239"/>
 </return>
-<msg time="2025-09-21T13:34:02.049424" level="INFO">${display_resolution_values} = {'WIDTH': 1920, 'HEIGHT': 1080, 'ASPECT_RATIO': 969}</msg>
+<msg time="2026-05-05T21:05:56.757837" level="INFO">${display_resolution_values} = {'WIDTH': 1920, 'HEIGHT': 1080, 'ASPECT_RATIO': 969}</msg>
 <var>${display_resolution_values}</var>
 <doc>Get Display Resolution from display resolution dictionary
 values: MAX, HD, FHD, QUAD_HD
 DEFAULT: MAX</doc>
-<status status="PASS" start="2025-09-21T13:34:02.047901" elapsed="0.001549"/>
+<status status="PASS" start="2026-05-05T21:05:56.755715" elapsed="0.002176"/>
 </kw>
 <if>
 <branch type="IF" condition="'${WEB_BROWSER}' == 'chromium'">
@@ -130,58 +137,58 @@ DEFAULT: MAX</doc>
 <arg>${WEB_BROWSER_ARGUMENTS}</arg>
 <arg>args=${CHROME_ARGS}</arg>
 <doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.050059" elapsed="0.000302"/>
+<status status="PASS" start="2026-05-05T21:05:56.759017" elapsed="0.000426"/>
 </kw>
 <doc>Set Chrome Arguments</doc>
-<status status="PASS" start="2025-09-21T13:34:02.049838" elapsed="0.000596"/>
+<status status="PASS" start="2026-05-05T21:05:56.758617" elapsed="0.000963"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:02.049538" elapsed="0.000935"/>
+<status status="PASS" start="2026-05-05T21:05:56.758055" elapsed="0.001590"/>
 </branch>
-<status status="PASS" start="2025-09-21T13:34:02.049517" elapsed="0.001073"/>
+<status status="PASS" start="2026-05-05T21:05:56.758017" elapsed="0.001708"/>
 </if>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-09-21T13:34:02.051263" level="INFO">${vp_width} = 1920</msg>
+<msg time="2026-05-05T21:05:56.760338" level="INFO">${vp_width} = 1920</msg>
 <var>${vp_width}</var>
 <arg>${display_resolution_values}</arg>
 <arg>WIDTH</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.050831" elapsed="0.000498"/>
+<status status="PASS" start="2026-05-05T21:05:56.759927" elapsed="0.000468"/>
 </kw>
 <kw name="Get From Dictionary" owner="Collections">
-<msg time="2025-09-21T13:34:02.051930" level="INFO">${vp_height} = 1080</msg>
+<msg time="2026-05-05T21:05:56.760990" level="INFO">${vp_height} = 1080</msg>
 <var>${vp_height}</var>
 <arg>${display_resolution_values}</arg>
 <arg>HEIGHT</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.051531" elapsed="0.000425"/>
+<status status="PASS" start="2026-05-05T21:05:56.760622" elapsed="0.000418"/>
 </kw>
 <kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-09-21T13:34:02.052365" level="INFO">${viewport} = {'width': 1920, 'height': 1080}</msg>
+<msg time="2026-05-05T21:05:56.762173" level="INFO">${viewport} = {'width': 1920, 'height': 1080}</msg>
 <var>${viewport}</var>
 <arg>width=${vp_width}</arg>
 <arg>height=${vp_height}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.052084" elapsed="0.000307"/>
+<status status="PASS" start="2026-05-05T21:05:56.761591" elapsed="0.000636"/>
 </kw>
 <kw name="Set To Dictionary" owner="Collections">
 <arg>${CONTEXT_ARGUMENTS}</arg>
 <arg>acceptDownloads=True</arg>
 <arg>viewport=${viewport}</arg>
 <doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.052675" elapsed="0.000203"/>
+<status status="PASS" start="2026-05-05T21:05:56.762450" elapsed="0.000397"/>
 </kw>
 <kw name="New Browser" owner="Browser">
-<msg time="2025-09-21T13:34:02.053794" level="INFO">{"browser": "chromium", "headless": false, "args": [], "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\Users\\marce\\OneDrive\\Desktop\\Automation Projects\\Automation\\results\\browser\\traces\\temp\\e444678c-2e78-4874-a4d1-734ebcb24cb1"}</msg>
-<msg time="2025-09-21T13:34:02.096039" level="INFO">Starting Browser process C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\.venv\Lib\site-packages\Browser\wrapper\index.js using at 127.0.0.1:54581</msg>
-<msg time="2025-09-21T13:34:04.138885" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"args":[],"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\Users\\marce\\OneDrive\\Desktop\\Automation Projects\\Automation\\results\\browser\\traces\\temp\\e444678c-2e78-4874-a4d1-734ebcb24cb1"}</msg>
+<msg time="2026-05-05T21:05:56.766337" level="INFO">{"browser": "chromium", "headless": false, "args": [], "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "C:\\Users\\marce\\OneDrive\\Desktop\\Automation Projects\\robot-automation-project\\results\\browser\\traces\\temp\\099b299d-c481-4291-aae7-9103ec8a5944"}</msg>
+<msg time="2026-05-05T21:05:56.842833" level="INFO">Starting Browser process C:\Users\marce\AppData\Roaming\Python\Python313\site-packages\Browser\wrapper\index.js using at 127.0.0.1:54385</msg>
+<msg time="2026-05-05T21:06:02.626577" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"args":[],"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"C:\\Users\\marce\\OneDrive\\Desktop\\Automation Projects\\robot-automation-project\\results\\browser\\traces\\temp\\099b299d-c481-4291-aae7-9103ec8a5944"}</msg>
 <arg>&amp;{WEB_BROWSER_ARGUMENTS}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Create a new playwright Browser with specified options.</doc>
-<status status="PASS" start="2025-09-21T13:34:02.052995" elapsed="2.086244"/>
+<status status="PASS" start="2026-05-05T21:05:56.763085" elapsed="5.864638"/>
 </kw>
 <kw name="New Context" owner="Browser">
-<msg time="2025-09-21T13:34:04.146855" level="INFO">{
+<msg time="2026-05-05T21:06:02.641177" level="INFO">{
   "acceptDownloads": true,
   "bypassCSP": false,
   "forcedColors": "none",
@@ -191,585 +198,158 @@ DEFAULT: MAX</doc>
   "reducedMotion": "no-preference",
   "serviceWorkers": "allow",
   "viewport": {
-    "height": 1080,
-    "width": 1920
+    "width": 1920,
+    "height": 1080
   }
 }</msg>
-<msg time="2025-09-21T13:34:04.189909" level="INFO">Successfully created context. </msg>
-<msg time="2025-09-21T13:34:04.190107" level="INFO">{'acceptDownloads': True, 'bypassCSP': False, 'forcedColors': 'none', 'ignoreHTTPSErrors': False, 'javaScriptEnabled': True, 'offline': False, 'reducedMotion': 'no-preference', 'serviceWorkers': 'allow', 'viewport': {'height': 1080, 'width': 1920}}</msg>
+<msg time="2026-05-05T21:06:02.709318" level="INFO">Successfully created context. </msg>
+<msg time="2026-05-05T21:06:02.709622" level="INFO">{'acceptDownloads': True, 'bypassCSP': False, 'forcedColors': 'none', 'ignoreHTTPSErrors': False, 'javaScriptEnabled': True, 'offline': False, 'reducedMotion': 'no-preference', 'serviceWorkers': 'allow', 'viewport': {'width': 1920, 'height': 1080}}</msg>
 <arg>&amp;{CONTEXT_ARGUMENTS}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Create a new BrowserContext with specified options.</doc>
-<status status="PASS" start="2025-09-21T13:34:04.139810" elapsed="0.050492"/>
+<status status="PASS" start="2026-05-05T21:06:02.629202" elapsed="0.080756"/>
 </kw>
 <kw name="New Page" owner="Browser">
-<msg time="2025-09-21T13:34:04.907089" level="INFO">Successfully initialized new page object and opened url: about:blank</msg>
+<msg time="2026-05-05T21:06:04.136505" level="INFO">Successfully initialized new page object and opened url: about:blank</msg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Open a new Page.</doc>
-<status status="PASS" start="2025-09-21T13:34:04.190797" elapsed="0.717075"/>
+<status status="PASS" start="2026-05-05T21:06:02.710778" elapsed="1.426318"/>
 </kw>
 <doc>Create Incognito Browser With Context</doc>
-<status status="PASS" start="2025-09-21T13:34:02.046498" elapsed="2.861776"/>
+<status status="PASS" start="2026-05-05T21:05:56.755193" elapsed="7.382327"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:02.042408" elapsed="2.866072"/>
+<status status="PASS" start="2026-05-05T21:05:56.754498" elapsed="7.383208"/>
 </branch>
 <branch type="ELSE IF" condition="&quot;${BROWSER_STRATEGY}&quot; == &quot;persistent&quot;">
 <kw name="Create Persistent Browser And Context" owner="ManageBrowser">
 <doc>Create Persistent Browser With Context</doc>
-<status status="NOT RUN" start="2025-09-21T13:34:04.910120" elapsed="0.000456"/>
+<status status="NOT RUN" start="2026-05-05T21:06:04.139146" elapsed="0.000721"/>
 </kw>
-<status status="NOT RUN" start="2025-09-21T13:34:04.908733" elapsed="0.002047"/>
+<status status="NOT RUN" start="2026-05-05T21:06:04.137949" elapsed="0.002243"/>
 </branch>
-<status status="PASS" start="2025-09-21T13:34:02.042253" elapsed="2.868702"/>
+<status status="PASS" start="2026-05-05T21:05:56.754456" elapsed="7.385997"/>
 </if>
 <doc>Create Browser With Context based on browser strategy
 values: incognito, persistent</doc>
-<status status="PASS" start="2025-09-21T13:34:02.036404" elapsed="2.874782"/>
+<status status="PASS" start="2026-05-05T21:05:56.743365" elapsed="7.397765"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:02.029958" elapsed="2.881459"/>
+<status status="PASS" start="2026-05-05T21:05:56.722226" elapsed="7.419628"/>
 </kw>
-<test id="s1-t1" name="Scenario 0 &gt; Create An Account In The Website" line="19">
+<test id="s1-t1" name="Scenario 3 &gt; Login With Invalid Credentials" line="52">
 <kw name="Go to the website page" owner="login_kw">
 <kw name="Go To" owner="Browser">
-<msg time="2025-09-21T13:34:07.189504" level="INFO">Successfully opened URL https://www.automationexercise.com/</msg>
+<msg time="2026-05-05T21:06:08.012842" level="INFO">Successfully opened URL https://www.automationexercise.com/</msg>
 <arg>${URL}</arg>
 <tag>BrowserControl</tag>
 <tag>Setter</tag>
 <doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2025-09-21T13:34:04.956110" elapsed="2.234200"/>
+<status status="PASS" start="2026-05-05T21:06:04.230134" elapsed="3.789568"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:04.955163" elapsed="2.235618"/>
+<status status="PASS" start="2026-05-05T21:06:04.228526" elapsed="3.792039"/>
 </kw>
 <kw name="Go To The Login Page" owner="login_kw">
 <kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:07.198812" level="INFO">Clicks the element 'a[href="/login"]'.</msg>
+<msg time="2026-05-05T21:06:08.032925" level="INFO">Clicks the element 'a[href="/login"]'.</msg>
 <arg>${login_page}</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:07.194441" elapsed="0.634209"/>
+<status status="PASS" start="2026-05-05T21:06:08.026483" elapsed="1.912997"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:07.192450" elapsed="0.636729"/>
+<status status="PASS" start="2026-05-05T21:06:08.023595" elapsed="1.916689"/>
 </kw>
-<kw name="Generate Random Email" owner="common_kw">
-<kw name="Generate Random String" owner="String">
-<msg time="2025-09-21T13:34:07.833019" level="INFO">${random_numbers} = 75489</msg>
-<var>${random_numbers}</var>
-<arg>5</arg>
-<arg>[NUMBERS]</arg>
-<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
-<status status="PASS" start="2025-09-21T13:34:07.831980" elapsed="0.001134"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-09-21T13:34:07.834234" level="INFO">${random_email} = marceloportfolio75489@test.com</msg>
-<var>${random_email}</var>
-<arg>marceloportfolio${random_numbers}@test.com</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-09-21T13:34:07.833565" elapsed="0.000761"/>
-</kw>
-<return>
-<value>${random_email}</value>
-<status status="PASS" start="2025-09-21T13:34:07.834527" elapsed="0.000335"/>
-</return>
-<msg time="2025-09-21T13:34:07.835401" level="INFO">${random_email_user} = marceloportfolio75489@test.com</msg>
-<var>${random_email_user}</var>
-<doc>Generates a random email with format: marceloportfolio[random_numbers]@test.com</doc>
-<status status="PASS" start="2025-09-21T13:34:07.830592" elapsed="0.004906"/>
-</kw>
-<kw name="Input Registration Name Credential" owner="login_kw">
+<kw name="Input The Email &quot;${USER_USERNAME}&quot; in the field" owner="login_kw" source_name="Input The Email &quot;${VAR_USER_USERNAME}&quot; in the field">
 <kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:07.839350" level="INFO">Fills the text 'Marcelo Portfolio' in the given field.</msg>
-<arg>${register_name_loc}</arg>
-<arg>${name_credential}</arg>
+<msg time="2026-05-05T21:06:09.946950" level="INFO">Fills the text 'marcelosautomationproject@gmail.com' in the given field.</msg>
+<arg>${login_email_loc}</arg>
+<arg>${VAR_USER_USERNAME}</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:07.837894" elapsed="0.232962"/>
+<status status="PASS" start="2026-05-05T21:06:09.944553" elapsed="0.440036"/>
 </kw>
-<arg>${GENERIC_NAME}</arg>
-<status status="PASS" start="2025-09-21T13:34:07.836629" elapsed="0.235542"/>
+<status status="PASS" start="2026-05-05T21:06:09.942331" elapsed="0.442800"/>
 </kw>
-<kw name="Input Registration Email Credential" owner="login_kw">
+<kw name="Input The Password &quot;${GENERIC_WRONG_PASSWORD}&quot; in the field" owner="login_kw" source_name="Input The Password &quot;${VAR_USER_PASSWORD}&quot; in the field">
 <kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:08.079082" level="INFO">Fills the text 'marceloportfolio75489@test.com' in the given field.</msg>
-<arg>${register_email_loc}</arg>
-<arg>${email_credential}</arg>
+<msg time="2026-05-05T21:06:10.393661" level="INFO">Fills the text 'notarealpassword' in the given field.</msg>
+<arg>${login_password_loc}</arg>
+<arg>${VAR_USER_PASSWORD}</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.076862" elapsed="0.099578"/>
+<status status="PASS" start="2026-05-05T21:06:10.391074" elapsed="0.080807"/>
 </kw>
-<arg>${random_email_user}</arg>
-<status status="PASS" start="2025-09-21T13:34:08.074764" elapsed="0.102408"/>
+<status status="PASS" start="2026-05-05T21:06:10.387883" elapsed="0.084567"/>
 </kw>
-<kw name="Click On Registration Register Button" owner="login_kw">
+<kw name="Click On Login Button" owner="login_kw">
 <kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:08.184538" level="INFO">Clicks the element 'button[data-qa="signup-button"]'.</msg>
-<arg>${register_button_loc}</arg>
+<msg time="2026-05-05T21:06:10.478668" level="INFO">Clicks the element 'button[data-qa="login-button"]'.</msg>
+<arg>${login_button_loc}</arg>
 <tag>PageContent</tag>
 <tag>Setter</tag>
 <doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.182675" elapsed="0.389170"/>
+<status status="PASS" start="2026-05-05T21:06:10.476560" elapsed="0.338835"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:08.181054" elapsed="0.391234"/>
+<status status="PASS" start="2026-05-05T21:06:10.474657" elapsed="0.341664"/>
 </kw>
-<kw name="Enter Account Information" owner="login_kw">
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:08.574348" level="INFO">Clicks the element 'input[id="id_gender1"]'.</msg>
-<arg>${gender_male_loc}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.573612" elapsed="0.166414"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:08.741778" level="INFO">Fills the text 'Marcelo Portfolio' in the given field.</msg>
-<arg>${name_field_loc}</arg>
-<arg>${account_name}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.740607" elapsed="0.026039"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:08.769091" level="INFO">Fills the text 'Test123!' in the given field.</msg>
-<arg>${password_field_loc}</arg>
-<arg>${account_password}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.767319" elapsed="0.042979"/>
-</kw>
-<kw name="Select Options By" owner="Browser">
-<msg time="2025-09-21T13:34:08.812751" level="INFO">Selects the option(s) 21 by attribute SelectAttribute.value from element id=days.</msg>
-<arg>${days_dropdown_loc}</arg>
-<arg>value</arg>
-<arg>${birth_day}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Selects options from select element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.810924" elapsed="0.083275"/>
-</kw>
-<kw name="Select Options By" owner="Browser">
-<msg time="2025-09-21T13:34:08.896169" level="INFO">Selects the option(s) 12 by attribute SelectAttribute.value from element id=months.</msg>
-<arg>${months_dropdown_loc}</arg>
-<arg>value</arg>
-<arg>${birth_month}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Selects options from select element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.894812" elapsed="0.039882"/>
-</kw>
-<kw name="Select Options By" owner="Browser">
-<msg time="2025-09-21T13:34:08.936470" level="INFO">Selects the option(s) 2001 by attribute SelectAttribute.value from element id=years.</msg>
-<arg>${years_dropdown_loc}</arg>
-<arg>value</arg>
-<arg>${birth_year}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Selects options from select element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.935211" elapsed="0.043663"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:08.572959" elapsed="0.406195"/>
-</kw>
-<kw name="Enter Address Information" owner="login_kw">
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:08.982585" level="INFO">Fills the text 'Marcelo' in the given field.</msg>
-<arg>${first_name_loc}</arg>
-<arg>${first_name_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:08.981178" elapsed="0.037669"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:09.022408" level="INFO">Fills the text 'Portfolio' in the given field.</msg>
-<arg>${last_name_loc}</arg>
-<arg>${last_name_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.020511" elapsed="0.049630"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:09.073019" level="INFO">Fills the text 'PortfolioCompany' in the given field.</msg>
-<arg>${company_loc}</arg>
-<arg>${company_name}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.070740" elapsed="0.051264"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:09.124415" level="INFO">Fills the text 'Imaginy St, 1462' in the given field.</msg>
-<arg>${address1_loc}</arg>
-<arg>${address_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.122747" elapsed="0.040713"/>
-</kw>
-<kw name="Select Options By" owner="Browser">
-<msg time="2025-09-21T13:34:09.166635" level="INFO">Selects the option(s) India by attribute SelectAttribute.value from element id=country.</msg>
-<arg>${country_dropdown_loc}</arg>
-<arg>value</arg>
-<arg>${country_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Selects options from select element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.164320" elapsed="0.074606"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:09.241469" level="INFO">Fills the text 'Georgia' in the given field.</msg>
-<arg>${state_loc}</arg>
-<arg>${state_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.239604" elapsed="0.031923"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:09.275404" level="INFO">Fills the text 'LA' in the given field.</msg>
-<arg>${city_loc}</arg>
-<arg>${city_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.272327" elapsed="0.069089"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:09.345870" level="INFO">Fills the text '2112' in the given field.</msg>
-<arg>${zipcode_loc}</arg>
-<arg>${zipcode_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.342656" elapsed="0.055752"/>
-</kw>
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:09.401487" level="INFO">Fills the text '459988745' in the given field.</msg>
-<arg>${mobile_number_loc}</arg>
-<arg>${mobile_number_value}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.399256" elapsed="0.053515"/>
-</kw>
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:09.456327" level="INFO">Clicks the element 'button[data-qa="create-account"]'.</msg>
-<arg>${create_account_button_loc}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:09.453559" elapsed="0.967963"/>
-</kw>
-<kw name="Click On Continue" owner="login_kw">
-<kw name="Wait For Elements State" owner="Browser">
-<msg time="2025-09-21T13:34:10.603666" level="INFO">Waited for Element with selector a[data-qa="continue-button"] at state visible</msg>
-<arg>${register_continue_button}</arg>
-<arg>visible</arg>
-<arg>timeout=5</arg>
-<tag>PageContent</tag>
-<tag>Wait</tag>
-<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2025-09-21T13:34:10.424104" elapsed="0.180242"/>
-</kw>
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:10.607740" level="INFO">Clicks the element 'a[data-qa="continue-button"]'.</msg>
-<arg>${register_continue_button}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:10.605207" elapsed="0.379809"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:10.422295" elapsed="0.563089"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:08.980082" elapsed="2.005477"/>
-</kw>
-<kw name="Delete Account" owner="login_kw">
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:10.989303" level="INFO">Clicks the element 'a[href="/delete_account"]'.</msg>
-<arg>${delete_button}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:10.987703" elapsed="0.922426"/>
-</kw>
-<kw name="Click On Continue" owner="login_kw">
-<kw name="Wait For Elements State" owner="Browser">
-<msg time="2025-09-21T13:34:12.016813" level="INFO">Waited for Element with selector a[data-qa="continue-button"] at state visible</msg>
-<arg>${register_continue_button}</arg>
-<arg>visible</arg>
-<arg>timeout=5</arg>
-<tag>PageContent</tag>
-<tag>Wait</tag>
-<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="PASS" start="2025-09-21T13:34:11.911588" elapsed="0.105750"/>
-</kw>
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:12.019598" level="INFO">Clicks the element 'a[data-qa="continue-button"]'.</msg>
-<arg>${register_continue_button}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:12.017958" elapsed="0.325937"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:11.910664" elapsed="0.433670"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:10.986636" elapsed="1.357854"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:04.911880" elapsed="7.433763"/>
-</test>
-<test id="s1-t2" name="Scenario 1 &gt; Register User with existing email" line="32">
-<kw name="Go to the website page" owner="login_kw">
-<kw name="Go To" owner="Browser">
-<msg time="2025-09-21T13:34:15.640840" level="INFO">Successfully opened URL https://www.automationexercise.com/</msg>
-<arg>${URL}</arg>
-<tag>BrowserControl</tag>
-<tag>Setter</tag>
-<doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2025-09-21T13:34:12.500807" elapsed="3.140655"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:12.499535" elapsed="3.142366"/>
-</kw>
-<kw name="Go To The Login Page" owner="login_kw">
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:15.649968" level="INFO">Clicks the element 'a[href="/login"]'.</msg>
-<arg>${login_page}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:15.647335" elapsed="0.621942"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:15.643343" elapsed="0.626270"/>
-</kw>
-<kw name="Input Registration Name Credential" owner="login_kw">
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:16.273475" level="INFO">Fills the text 'Marcelo Portfolio' in the given field.</msg>
-<arg>${register_name_loc}</arg>
-<arg>${name_credential}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:16.272002" elapsed="0.100508"/>
-</kw>
-<arg>${USER_NAME}</arg>
-<status status="PASS" start="2025-09-21T13:34:16.270629" elapsed="0.102414"/>
-</kw>
-<kw name="Input Registration Email Credential" owner="login_kw">
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:16.379642" level="INFO">Fills the text 'marcelosautomationproject@gmail.com' in the given field.</msg>
-<arg>${register_email_loc}</arg>
-<arg>${email_credential}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:16.376401" elapsed="0.051545"/>
-</kw>
-<arg>${USER_USERNAME}</arg>
-<status status="PASS" start="2025-09-21T13:34:16.374443" elapsed="0.053985"/>
-</kw>
-<kw name="Click On Registration Register Button" owner="login_kw">
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:16.432729" level="INFO">Clicks the element 'button[data-qa="signup-button"]'.</msg>
-<arg>${register_button_loc}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:16.430772" elapsed="0.353060"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:16.429568" elapsed="0.354523"/>
-</kw>
-<kw name="Validate Existing Email Message" owner="login_kw">
+<kw name="Validate Invalid Credentials Message" owner="login_kw">
 <kw name="Get Text" owner="Browser">
-<msg time="2025-09-21T13:34:16.937086" level="INFO">Text: 'Email Address already exist!'</msg>
-<msg time="2025-09-21T13:34:16.937481" level="INFO">${error message} = Email Address already exist!</msg>
+<msg time="2026-05-05T21:06:11.142342" level="INFO">Text: 'Your email or password is incorrect!'</msg>
+<msg time="2026-05-05T21:06:11.142874" level="INFO">${error message} = Your email or password is incorrect!</msg>
 <var>${error message}</var>
-<arg>${email_exist_locator}</arg>
+<arg>${invalid_cred_msg_loc}</arg>
 <tag>Assertion</tag>
 <tag>Getter</tag>
 <tag>PageContent</tag>
 <doc>Returns text attribute of the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:16.785797" elapsed="0.151769"/>
+<status status="PASS" start="2026-05-05T21:06:10.820447" elapsed="0.322545"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
 <arg>${error message}</arg>
-<arg>${email_exist_message}</arg>
+<arg>${invalid_credentials_msg}</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2025-09-21T13:34:16.938069" elapsed="0.000953"/>
+<status status="PASS" start="2026-05-05T21:06:11.145026" elapsed="0.001488"/>
 </kw>
-<status status="PASS" start="2025-09-21T13:34:16.784775" elapsed="0.154473"/>
+<status status="PASS" start="2026-05-05T21:06:10.818615" elapsed="0.328464"/>
 </kw>
-<kw name="Logout From The Application" owner="login_kw">
-<kw name="Wait For Elements State" owner="Browser">
-<msg time="2025-09-21T13:34:27.187442" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="browser/screenshot/fail-screenshot-1.png" target="_blank"&gt;&lt;img src="browser/screenshot/fail-screenshot-1.png" width="800px"/&gt;&lt;/a&gt;</msg>
-<msg time="2025-09-21T13:34:27.188402" level="INFO">See also file:///C:/Users/marce/OneDrive/Desktop/Automation%20Projects/Automation/results/playwright-log.txt for additional details.</msg>
-<msg time="2025-09-21T13:34:27.189027" level="FAIL">TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
-Call log:
-  - waiting for locator('a[href="/logout"]') to be visible
-</msg>
-<arg>${logout_page_button}</arg>
-<arg>visible</arg>
-<arg>10s</arg>
-<tag>PageContent</tag>
-<tag>Wait</tag>
-<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
-<status status="FAIL" start="2025-09-21T13:34:16.941250" elapsed="10.256856">TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
-Call log:
-  - waiting for locator('a[href="/logout"]') to be visible
-</status>
-</kw>
-<kw name="Click" owner="Browser">
-<arg>${logout_page_button}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="NOT RUN" start="2025-09-21T13:34:27.198440" elapsed="0.000151"/>
-</kw>
-<status status="FAIL" start="2025-09-21T13:34:16.940000" elapsed="10.258761">TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
-Call log:
-  - waiting for locator('a[href="/logout"]') to be visible
-</status>
-</kw>
-<tag>fail</tag>
-<status status="FAIL" start="2025-09-21T13:34:12.488568" elapsed="14.710887">TimeoutError: locator.waitFor: Timeout 10000ms exceeded.
-Call log:
-  - waiting for locator('a[href="/logout"]') to be visible
-</status>
-</test>
-<test id="s1-t3" name="Scenario 2 &gt; Login with valid credentials" line="42">
-<kw name="Go to the website page" owner="login_kw">
-<kw name="Go To" owner="Browser">
-<msg time="2025-09-21T13:34:30.271459" level="INFO">Successfully opened URL https://www.automationexercise.com/</msg>
-<arg>${URL}</arg>
-<tag>BrowserControl</tag>
-<tag>Setter</tag>
-<doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2025-09-21T13:34:27.218852" elapsed="3.053062"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:27.217658" elapsed="3.054876"/>
-</kw>
-<kw name="Go To The Login Page" owner="login_kw">
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:30.281530" level="INFO">Clicks the element 'a[href="/login"]'.</msg>
-<arg>${login_page}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:30.279202" elapsed="0.677184"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:30.277053" elapsed="0.680233"/>
-</kw>
-<kw name="Input The Email &quot;${USER_USERNAME}&quot; in the field" owner="login_kw" source_name="Input The Email &quot;${VAR_USER_USERNAME}&quot; in the field">
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:30.962181" level="INFO">Fills the text 'marcelosautomationproject@gmail.com' in the given field.</msg>
-<arg>${login_email_loc}</arg>
-<arg>${VAR_USER_USERNAME}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:30.959990" elapsed="0.180289"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:30.958475" elapsed="0.182434"/>
-</kw>
-<kw name="Input The Password &quot;${USER_PASSWORD}&quot; in the field" owner="login_kw" source_name="Input The Password &quot;${VAR_USER_PASSWORD}&quot; in the field">
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:31.146172" level="INFO">Fills the text 'Portfolio123!' in the given field.</msg>
-<arg>${login_password_loc}</arg>
-<arg>${VAR_USER_PASSWORD}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:31.143447" elapsed="0.054196"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:31.142017" elapsed="0.056356"/>
-</kw>
-<doc>Test scenario description</doc>
+<doc>Test login with invalid credentials to verify security validation.</doc>
 <tag>login</tag>
 <tag>smoke</tag>
-<status status="PASS" start="2025-09-21T13:34:27.209429" elapsed="3.991012"/>
-</test>
-<test id="s1-t4" name="Scenario 3 &gt; Login With Invalid Credentials" line="50">
-<kw name="Go to the website page" owner="login_kw">
-<kw name="Go To" owner="Browser">
-<msg time="2025-09-21T13:34:32.603123" level="INFO">Successfully opened URL https://www.automationexercise.com/</msg>
-<arg>${URL}</arg>
-<tag>BrowserControl</tag>
-<tag>Setter</tag>
-<doc>Navigates to the given ``url``.</doc>
-<status status="PASS" start="2025-09-21T13:34:31.258271" elapsed="1.345257"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:31.257116" elapsed="1.346744"/>
-</kw>
-<kw name="Go To The Login Page" owner="login_kw">
-<kw name="Click" owner="Browser">
-<msg time="2025-09-21T13:34:32.608100" level="INFO">Clicks the element 'a[href="/login"]'.</msg>
-<arg>${login_page}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Simulates mouse click on the element found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:32.606321" elapsed="0.561042"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:32.604880" elapsed="0.562886"/>
-</kw>
-<kw name="Input The Email &quot;${USER_USERNAME}&quot; in the field" owner="login_kw" source_name="Input The Email &quot;${VAR_USER_USERNAME}&quot; in the field">
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:33.172344" level="INFO">Fills the text 'marcelosautomationproject@gmail.com' in the given field.</msg>
-<arg>${login_email_loc}</arg>
-<arg>${VAR_USER_USERNAME}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:33.170443" elapsed="0.110657"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:33.169064" elapsed="0.112788"/>
-</kw>
-<kw name="Input The Password &quot;${GENERIC_WRONG_PASSWORD}&quot; in the field" owner="login_kw" source_name="Input The Password &quot;${VAR_USER_PASSWORD}&quot; in the field">
-<kw name="Fill Text" owner="Browser">
-<msg time="2025-09-21T13:34:33.287698" level="INFO">Fills the text 'notarealpassword' in the given field.</msg>
-<arg>${login_password_loc}</arg>
-<arg>${VAR_USER_PASSWORD}</arg>
-<tag>PageContent</tag>
-<tag>Setter</tag>
-<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
-<status status="PASS" start="2025-09-21T13:34:33.285386" elapsed="0.061054"/>
-</kw>
-<status status="PASS" start="2025-09-21T13:34:33.283479" elapsed="0.063390"/>
-</kw>
-<doc>Test scenario description</doc>
-<tag>login</tag>
-<tag>smoke</tag>
-<status status="PASS" start="2025-09-21T13:34:31.227882" elapsed="2.119861"/>
+<tag>smokeui</tag>
+<tag>test</tag>
+<status status="PASS" start="2026-05-05T21:06:04.143033" elapsed="7.006006"/>
 </test>
 <doc>Login Test Suite</doc>
-<status status="FAIL" start="2025-09-21T13:34:01.755465" elapsed="31.615136"/>
+<status status="PASS" start="2026-05-05T21:05:55.855861" elapsed="15.327179"/>
 </suite>
 <statistics>
 <total>
-<stat pass="3" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">fail</stat>
-<stat pass="2" fail="0" skip="0">login</stat>
-<stat pass="2" fail="0" skip="0">smoke</stat>
+<stat pass="1" fail="0" skip="0">login</stat>
+<stat pass="1" fail="0" skip="0">smoke</stat>
+<stat pass="1" fail="0" skip="0">smokeui</stat>
+<stat pass="1" fail="0" skip="0">test</stat>
 </tag>
 <suite>
-<stat name="Login" id="s1" pass="3" fail="1" skip="0">Login</stat>
+<stat name="Login" id="s1" pass="1" fail="0" skip="0">Login</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2025-09-21T13:34:01.980957" level="ERROR">Error in file 'C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\Resources\Common\common_kw.robot' on line 3: Importing library 'JsonLibrary' failed: ModuleNotFoundError: No module named 'JsonLibrary'
+<msg time="2026-05-05T21:05:56.593947" level="ERROR">Error in file 'C:\Users\marce\OneDrive\Desktop\Automation Projects\robot-automation-project\Resources\Common\common_kw.robot' on line 3: Importing library 'JsonLibrary' failed: ModuleNotFoundError: No module named 'JsonLibrary'
 Traceback (most recent call last):
   None
 PYTHONPATH:
-  C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\.venv\Scripts\robot.exe
-  C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\.venv\Scripts\python313.zip
+  C:\Users\marce\AppData\Roaming\Python\Python313\Scripts\robot.exe
+  C:\Program Files\Python313\python313.zip
   C:\Program Files\Python313\DLLs
   C:\Program Files\Python313\Lib
   C:\Program Files\Python313
-  C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\.venv
-  C:\Users\marce\OneDrive\Desktop\Automation Projects\Automation\.venv\Lib\site-packages</msg>
+  C:\Users\marce\AppData\Roaming\Python\Python313\site-packages
+  C:\Program Files\Python313\Lib\site-packages</msg>
 </errors>
 </robot>

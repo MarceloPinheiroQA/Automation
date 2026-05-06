@@ -23,6 +23,9 @@ Input The Password "${VAR_USER_PASSWORD}" in the field
 Click On Login Button
     Click    ${login_button_loc}
 
+Validate Invalid Credentials Message
+    ${error message}         Get Text    ${invalid_cred_msg_loc}
+    Should Be Equal As Strings    ${error message}    ${invalid_credentials_msg}
 Input Registration Credentials
     ${random_email}=    Generate Random Email
     Fill Text    ${register_name_loc}    Marcelo Portfolio
