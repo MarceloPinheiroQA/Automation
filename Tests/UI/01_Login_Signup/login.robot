@@ -46,14 +46,16 @@ Scenario 2 > Login with valid credentials
     Go To The Login Page
     Input The Email "${USER_USERNAME}" in the field
     Input The Password "${USER_PASSWORD}" in the field
+    Click On Login Button
     Logout From The Application
 
 Scenario 3 > Login With Invalid Credentials
     [Documentation]    Test login with invalid credentials to verify security validation.
-    [Tags]             smoke    login   
+    [Tags]             smoke    login   test
     Go to the website page
     Go To The Login Page
     Input The Email "${USER_USERNAME}" in the field
     Input The Password "${GENERIC_WRONG_PASSWORD}" in the field
-
+    Click On Login Button
+    Validate Invalid Credentials Message
 

@@ -9,6 +9,8 @@ ${login_email_loc}               input[data-qa="login-email"]
 ${login_password_loc}            input[data-qa="login-password"]
 ${login_button_loc}              button[data-qa="login-button"]
 ${logout_page_button}            a[href="/logout"]
+${invalid_cred_msg_loc}          xpath=//p[contains(text(),'Your email or password is incorrect!')]
+${invalid_credentials_msg}       Your email or password is incorrect!
 
 # Account Information Locators
 ${gender_male_loc}               input[id="id_gender1"]
