@@ -40,7 +40,7 @@
 
 This repository showcases a **maintainable** automation layout:
 
-- **UI tests** driven by Robot Framework Browser (Playwright) with shared browser bootstrapping and reusable UI keywords/page-style locators.
+- **UI tests** driven by Robot Framework Browser with shared browser bootstrapping and reusable UI keywords/page-style locators.
 - **API smoke tests** using the Requests library against the same product’s REST API (`base_url` in config).
 - **Environment-specific variables** loaded from JSON (`Data/ConfigFiles/`) plus optional Robot argument files (`Data/ArgumentsFiles/`).
 - **Reproducible CI** via Docker and GitHub Actions, with artifacts for logs and HTML reports.
