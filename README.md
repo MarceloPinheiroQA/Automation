@@ -2,7 +2,7 @@
 
 # Automation Portfolio
 
-**End-to-end and API test automation with [Robot Framework](https://robotframework.org/), [Browser](https://marketsquare.github.io/robotframework-browser/Browser.html) (Playwright), and [Requests](https://marketsquare.github.io/robotframework-requests/doc/RequestsLibrary.html).**
+**End-to-end and API test automation with [Robot Framework](https://robotframework.org/), [Browser](https://marketsquare.github.io/robotframework-browser/Browser.html), and [Requests](https://marketsquare.github.io/robotframework-requests/doc/RequestsLibrary.html).**
 
 [![Python](https://img.shields.io/badge/python-3.12+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![Robot Framework](https://img.shields.io/badge/Robot%20Framework-7.x-00C0B3?style=flat)](https://robotframework.org/)
